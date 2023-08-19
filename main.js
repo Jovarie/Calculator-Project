@@ -35,6 +35,16 @@ operationEl.forEach((operation) => {
     } else {
       result = parseFloat(dis2Num);
     }
+    
+    // Add the "%" operation handling
+    if (operationName === '%') {
+      result = result / 100; // Calculate the percentage
+      dis2Num = result.toString(); // Update display
+      display2El.innerText = dis2Num;
+      lastOperation = ""; // Reset lastOperation
+      return; // Exit the function
+    }
+
     clearVar(operationName);
     lastOperation = operationName;
     console.log(result);
