@@ -5,7 +5,7 @@ const numbersEl = document.querySelectorAll(".number");
 const operationEl = document.querySelectorAll(".operation");
 const equalEl = document.querySelector(".equal");
 const clearAllEl = document.querySelector(".all-clear");
-const clearLastEl = document.querySelector(".last-entity-clear");
+const backspaceEl = document.querySelector(".backspace");
 let dis1Num = "";
 let dis2Num = "";
 let result = null;
@@ -97,12 +97,17 @@ clearAllEl.addEventListener('click', (e) => {
   tempResultEl.innerHTML = '0';
 })
 //clear last entity button
-clearLastEl.addEventListener('click', (e) => {
+backspaceEl.addEventListener('click', (e) => {
   display2El.innerText = '';
   dis2Num = '';
 })
 
 window.addEventListener('keydown', (e) => {
+  if (e.key === 'Backspace') {
+    e.preventDefault(); // Prevent the default browser behavior (navigating back)
+    backspaceEl.click();
+  }
+  
   if (
     e.key === '0' ||
     e.key === '1' ||
@@ -117,12 +122,13 @@ window.addEventListener('keydown', (e) => {
     e.key === '.' 
   ){
     clickButtonE1(e.key);
-  } else if(
+  } else if (
     e.key === '/' ||
-    e.key === '*' ||
     e.key === '-' ||
-    e.key === '+'
-    // e.key === '%' 
+    e.key === '+' ||
+    e.key === '%' ||
+    e.key === '=' ||
+    e.key === 'x'
   ){
     clickOperation(e.key);
   }
